@@ -1,0 +1,45 @@
+psql
+
+CREATE DATABASE univercity;
+\c univercity;
+
+
+CREATE TABLE departments(id SERIAL PRIMARY KEY, name varchar NOT NULL UNIQUE, decanat varchar NOT NULL);
+
+INSERT INTO departments (name, decanat) VALUES ('Системное программирование', 'ИТ');
+INSERT INTO departments (name, decanat) VALUES ('Информационная безопасность', 'КиИБ');
+
+
+CREATE TABLE student_groups(if SERIAL PRIMARY KEY, name varchar NOT NULL UNIQUE, department varchar REFERENCES departments(name));
+
+INSERT INTO student_groups (name, department) VALUES ('БФИ2206', 'Системное программирование');
+INSERT INTO student_groups (name, department) VALUES ('БФИ2103', 'Системное программирование');
+INSERT INTO student_groups (name, department) VALUES ('БИБ2102', 'Информационная безопасность');
+INSERT INTO student_groups (name, department) VALUES ('БИБ2201', 'Информационная безопасность');
+
+
+CREATE TABLE students(id SERIAL PRIMARY KEY, name varchar NOT NULL, passport_data varchar(10) NOT NULL UNIQUE, student_group varchar REFERENCES student_groups(name));
+
+INSERT INTO students (name, passport_data, student_group) VALUES ('Андреева Арина Данииловна', '1111710298', 'БФИ2206');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Щербаков Павел Алексеевич', '2222827755', 'БФИ2206');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Бирюков Мирон Константинович', '3333686139', 'БФИ2206');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Лаврентьева Милана Романовна', '4444405630', 'БФИ2206');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Артамонова Мария Фёдоровна', '5555122966', 'БФИ2206');
+
+INSERT INTO students (name, passport_data, student_group) VALUES ('Соколов Илья Кириллович', '1111292347', 'БФИ2103');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Троицкий Матвей Георгиевич', '2222633443', 'БФИ2103');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Петухова София Руслановна', '3333539728', 'БФИ2103');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Зыков Тимофей Иванович', '4444124602', 'БФИ2103');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Пастухов Ярослав Матвеевич', '5555274452', 'БФИ2103');
+
+INSERT INTO students (name, passport_data, student_group) VALUES ('Шубин Мирон Тимурович', '1111989457', 'БИБ2102');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Смирнова Евгения Константиновна', '2222446060', 'БИБ2102');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Глухов Иван Даниилович', '3333992873', 'БИБ2102');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Терехова Софья Олеговна', '4444984037', 'БИБ2102');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Терентьева Амина Матвеевна', '5555303351', 'БИБ2102');
+
+INSERT INTO students (name, passport_data, student_group) VALUES ('Киселева Варвара Степановна', '1111826295', 'БИБ2201');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Михайлова Кристина Дмитриевна', '2222829241', 'БИБ2201');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Соколов Игорь Артёмович', '3333834240', 'БИБ2201');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Осипов Лев Ильич', '4444265955', 'БИБ2201');
+INSERT INTO students (name, passport_data, student_group) VALUES ('Михеева София Данииловна', '5555525587', 'БИБ2201');
